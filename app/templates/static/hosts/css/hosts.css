@@ -1,0 +1,69 @@
+.card-dashboard{
+
+    background-color: var(--main-color);
+    width: 50%;
+    margin-left: 10px;
+    margin-top: 40px;
+    text-align: center;
+    padding: 20px;
+
+}
+
+.text-card{
+
+    font-size: 25px;
+
+}
+
+.btn-add-carros{
+
+    background-color: var(--contrast-color);
+    padding: 5px;
+    font-weight: bold;
+    cursor: pointer;
+
+}
+
+.btn-principal{
+    color:white;
+    border: none;
+    background-color: var(--dark-color);
+    padding: 5px;
+    font-size: 30px;
+}
+
+.lista_hosts{
+    border: 1px solid white;
+    border-radius: 10px;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%; /* ou qualquer outra unidade desejada */
+    height: 80%; /* ou qualquer outra unidade desejada */
+    overflow:auto;
+    max-width: 800%;
+    z-index: 100;
+    text-decoration: none;
+}
+
+.filtros{
+    border: 1px solid white;
+    border-radius: 10px;
+    position: absolute;
+    top: 7%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%; /* ou qualquer outra unidade desejada */
+    height: 10%; /* ou qualquer outra unidade desejada */
+    z-index: 1000;
+    text-decoration: none;
+
+}
+
+.inner-div {
+    display: inline-block;
+    padding: 25px;
+    z-index: 101;
+}
+

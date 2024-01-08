@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'hosts/css/hosts.css' %}">
+{% endblock %}
+
+{% block 'dashboard' %}
+<div class="container">
+    <div class="row">
+
+        <!-- <div class="col-md card-dashboard">
+            <p class="text-card">Adicionar clientes</p>
+        </div>
+
+        <div class="col-md card-dashboard">
+            <p class="text-card">Atualizar cliente</p>
+        </div> -->
+
+
+
+    </div>
+</div>
+
+<div class="filtros">
+    <div class="">
+
+        <div class="inner-div">
+            <form action="{% url 'hosts' %}" method="GET" class="input-group">
+
+                <div class="input-group mb-3" >
+                    <input type="text" class="form-control" placeholder="Hosts" aria-label="Recipient's username" aria-describedby="button-addon2" name="search">
+                    <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+
+        <div class="inner-div">
+            <form action="{% url 'hosts' %}" method="GET" class="input-group">
+                <!-- <input type="number" name="search_id" id="" placeholder="Id do host">
+                <input type="submit" value="Buscar"> -->
+
+                <div class="input-group mb-3" >
+                    <input type="text" class="form-control" placeholder="ID" aria-label="Recipient's username" aria-describedby="button-addon2" name="search_id">
+                    <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+        <div class="inner-div">
+            <form action="{% url 'hosts' %}" method="GET" class="input-group">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Localidade" aria-label="Recipient's username" aria-describedby="button-addon2" name="localidade">
+                     <div class="input-group-append"> 
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
+                    </div> 
+                </div>
+            </form>
+
+        </div>
+
+        <div class="inner-div">
+            <form action="{% url 'hosts' %}" method="GET" class="input-group">
+                <div class="input-group mb-3">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Adicionar Host
+                    </button>
+                     <div class="input-group-append"> 
+                   
+                    </div> 
+                </div>
+            </form>
+
+        </div>
+
+
+
+    </div>
+    
+
+
+
+
+</div>
+
+<div class="lista_hosts" style="text-decoration: none;">
+    <table class="table table-bordered table-dark" style="text-decoration:none;">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">HOST</th>
+            <th scope="col">IP</th>
+            <th scope="col">MODELO</th>
+            <th scope="col">EMPRESA</th>
+            <th scope="col">LOCAL</th>
+            <th scope="col">Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% if hosts %}
+                {% for host in hosts %}
+                    <tr style="text-decoration: none;">                      
+                        <td>{{host.id}}</td>
+                        
+                        <td style="text-decoration:none;"><a href="{% url 'host_options_view' pk=host.pk %}" style="text-decoration: none; color: aliceblue;">{{host.host}}</a></td>
+                        <td>{{host.ip}}</td>
+                        <td>{{host.modelo}}</td>
+                        <td>{{host.empresa.empresa}}</td>
+                        <td>{{host.localidade.localidade}}</td>
+                        <td><a href="{% url 'update_view' pk=host.id %}"><button type="button" class="btn btn-info">Editar</button></a>
+                            
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+      </table>
+      <table>
+  
+    </table>
+</div>
+
+
+{% endblock %}
+
+{% block 'body' %}
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{new_form}}
+            
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

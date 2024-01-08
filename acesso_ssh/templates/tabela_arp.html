@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'hosts/css/hosts.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+{% endblock %}
+
+{% block 'dashboard' %}
+<div class="container">
+    <div class="row">
+
+        <!-- <div class="col-md card-dashboard">
+            <p class="text-card">Adicionar clientes</p>
+        </div>
+
+        <div class="col-md card-dashboard">
+            <p class="text-card">Atualizar cliente</p>
+        </div> -->
+
+
+
+    </div>
+</div>
+
+<div class="filtros">
+    <div class="">
+
+        <div class="inner-div">
+            <form action="{% url 'hosts' %}" method="GET" class="input-group">
+
+                <div class="input-group mb-3" >
+                    <input type="text" class="form-control" placeholder="Hosts" aria-label="Recipient's username" aria-describedby="button-addon2" name="search">
+                    <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+
+        <div class="inner-div">
+            <form action="{% url 'hosts' %}" method="GET" class="input-group">
+                <!-- <input type="number" name="search_id" id="" placeholder="Id do host">
+                <input type="submit" value="Buscar"> -->
+
+                <div class="input-group mb-3" >
+                    <input type="text" class="form-control" placeholder="ID" aria-label="Recipient's username" aria-describedby="button-addon2" name="search_id">
+                    <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+        <div class="inner-div">
+            <form action="{% url 'hosts' %}" method="GET" class="input-group">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Localidade" aria-label="Recipient's username" aria-describedby="button-addon2" name="localidade">
+                     <div class="input-group-append"> 
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
+                    </div> 
+                </div>
+            </form>
+
+        </div>
+
+        <div class="inner-div">
+            <form action="{% url 'hosts' %}" method="GET" class="input-group">
+                <div class="input-group mb-3">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Adicionar Host
+                    </button>
+                     <div class="input-group-append"> 
+                   
+                    </div> 
+                </div>
+            </form>
+
+        </div>
+
+
+
+    </div>
+    
+
+
+
+
+</div>
+
+<div class="lista_hosts" style="text-align: center;">
+    {% if arp_table %}
+        {% for host in arp_table %}
+            
+            <pre style="color: aliceblue; text-align: center;">
+                {{ host.arp|safe }}
+
+            </pre>
+        
+        {% endfor %}
+    {% endif %}
+  
+</div>
+
+
+{% endblock %}
+
+{% block 'body' %}
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{new_form}}
+            
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('.campo-decodificado').each(function() {
+            var conteudoCodificado = $(this).text();
+            var conteudoDecodificado = decodeURIComponent(escape(atob(conteudoCodificado)));
+            $(this).text(conteudoDecodificado);
+        });
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'hosts/css/hosts.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+{% endblock %}
+
+{% block 'dashboard' %}
+<div class="filtros">
+    <div class="inner-div" style="position: relative; z-index: 100;">
+        <form action="{% url 'hosts' %}" method="GET" class="input-group">
+            <div class="dropdown" style="position: relative; z-index: 101;">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Comandos
+                </button>
+                
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'show_arp_view' pk=object.id %}">Show Arp</a></li>
+                    <li><a class="dropdown-item" href="#">Show cdp nei det</a></li>
+                    <li><a class="dropdown-item" href="#">Show inter tran</a></li>
+                    
+                    <li><a class="dropdown-item" href="#">Show ip os nei</a></li>
+                    <li><a class="dropdown-item" href="#">Show int status</a></li>
+                    <li><a class="dropdown-item" href="#">Show mac address-table</a></li>
+
+                    <li><a class="dropdown-item" href="#">Show int des</a></li>
+                    <li><a class="dropdown-item" href="#">Show bgp su</a></li>
+                    <li><a class="dropdown-item" href="#">Show Runing</a></li>
+                    <li><a class="dropdown-item" href="#">Show log</a></li>
+                </ul>
+            </div>
+        </form>
+    </div>
+    <div class="inner-div" >
+        <p>{{object.host}}</p>
+    </div>
+</div>
+
+<div class="lista_hosts" style=" z-index: 100;">
+
+    <pre style="color: aliceblue;">
+        {{ object.arp|safe }}
+    </pre>
+
+</div>
+{% endblock %}
+
+{% block 'body' %}
+<!-- Se houver algum conteúdo para a seção de corpo -->
+{% endblock %}

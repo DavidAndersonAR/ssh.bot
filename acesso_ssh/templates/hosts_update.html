@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'hosts/css/hosts.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+{% endblock %}
+
+{% block 'dashboard' %}
+<div class="filtros">
+    <div class="inner-div" style="position: relative; z-index: 100;">
+        
+    </div>
+    <div class="inner-div" >
+        <p>{{object.host}}</p>
+    </div>
+</div>
+
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="filtros">
+        <div class="">
+
+        </div>
+        
+    </div>
+
+    <div class="lista_hosts">
+        <table>
+            {{ form.as_table }}
+        </table>
+        <form action="{% url 'hosts' %}" method="GET" class="input-group">
+
+            <div class="input-group mb-3" >
+                <input type="submit" value="Salvar Alterações" class="btn btn-primary">
+            </div>
+        </form>
+        
+    </div>
+</form> 
+{% endblock %}
+
+{% block 'body' %}
+
+{% endblock %}
