@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'hosts/css/hosts.css' %}">
+{% endblock %}
+
+{% block 'dashboard' %}
+<div class="container">
+    <div class="row">
+
+    </div>
+</div>
+
+<div class="filtros">
+    <div class="">
+
+
+
+        <div class="inner-div">
+            
+            <button onclick="goBack()" type="button" class="btn btn-primary">
+                Voltar
+            </button>
+
+        </div>
+
+    </div>
+    
+</div>
+
+<div class="lista_hosts_comparar" style="text-decoration: none;">
+    <table class="table table-bordered table-dark" style="text-decoration:none;">
+        <thead>
+          <tr>
+         
+         
+          </tr>
+        </thead>
+        <tbody>
+            {% if saida_comando %}
+                {% for arp_entry in saida_comando %}
+                    <tr style="text-decoration: none;">                      
+                       
+                        <td>{{arp_entry.id}}</td>
+                        <td>{{arp_entry.host.host}}</td>
+                        <td>{{arp_entry.host_id}}</td>
+                        <td> <a href="{% url 'result_hosts_lista_arp' pk=arp_entry.id %}">{{arp_entry.created_at}}</a></td>
+                       
+                            
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+      </table>
+      <table> 
+    </table>
+</div>
+
+<div class="lista_hosts_comparar2" style="text-decoration: none;">
+    <table class="table table-bordered table-dark" style="text-decoration:none;">
+        <thead>
+          <tr>
+            <th scope="col">HOST</th>
+            <th scope="col">IP</th>
+            <th scope="col">LOCAL</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% if hosts %}
+
+            {% endif %}
+        </tbody>
+      </table>
+      <table> 
+    </table>
+</div>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+{% endblock %}
+
+{% block 'body' %}
+
+
+{% endblock %}

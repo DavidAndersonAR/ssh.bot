@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'hosts/css/hosts.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+{% endblock %}
+
+{% block 'dashboard' %}
+<div class="filtros">
+    <div class="inner-div" style="position: relative; z-index: 100;">
+        
+    </div>
+    <div class="inner-div" >
+        <p>{{hosts.host}}</p>
+       
+
+    </div>
+</div>
+
+
+
+
+
+
+<div class="lista_hosts" style=" z-index: 100;">
+
+    <table class="table table-bordered table-dark" style="text-decoration:none;">
+        <thead>
+          <tr>
+            <th scope="col">ID ARP</th>
+            <th scope="col">HOST</th>
+           
+            <th scope="col">HOST ID</th>
+            <th scope="col">DATA</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% if saida_comando %}
+                {% for arp_entry in saida_comando %}
+                    <tr style="text-decoration: none;">                      
+                       
+                        <td>{{arp_entry.id}}</td>
+                        <td>{{arp_entry.host.host}}</td>
+                        <td>{{arp_entry.host_id}}</td>
+                        <td> <a href="{% url 'show_int_status' pk=arp_entry.id %}">{{arp_entry.created_at}}</a></td>
+                       
+                            
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+      </table>
+      <pre style="color: aliceblue;">
+        {% if saida_comando_detail_mac %}
+            {{ saida_comando_detail_mac.id }}
+            {{ saida_comando_detail_mac.comando }}
+        {% endif %}
+      </pre>
+ 
+
+    
+
+
+
+</div>
+{% endblock %}
+
+{% block 'body' %}
+<!-- Se houver algum conteúdo para a seção de corpo -->
+{% endblock %}

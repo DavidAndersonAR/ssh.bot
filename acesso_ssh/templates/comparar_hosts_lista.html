@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'hosts/css/hosts.css' %}">
+    <style>
+        /* Estilo para a tabela */
+        /* .table {
+            width: 100%;
+            max-width: 600px; 
+            margin: 20px auto;
+            border-collapse: collapse;
+            text-align: left;
+        } */
+
+        .table th, .table td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table th {
+            background-color: #333;
+            color: white;
+        }
+
+        .table a {
+            text-decoration: none;
+            color: aliceblue; /* Cor do link */
+        }
+
+      
+    </style>
+{% endblock %}
+
+{% block 'dashboard' %}
+<div class="container">
+    <div class="row">
+
+    </div>
+</div>
+
+<div class="filtros">
+    <div class="">
+
+        <div class="inner-div">
+            <form action="{% url 'hosts' %}" method="GET" class="input-group">
+
+                <div class="input-group mb-3" >
+                    <input type="text" class="form-control" placeholder="Hosts" aria-label="Recipient's username" aria-describedby="button-addon2" name="search">
+                    <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="inner-div">
+            <form action="{% url 'hosts' %}" method="GET" class="input-group">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Localidade" aria-label="Recipient's username" aria-describedby="button-addon2" name="localidade">
+                     <div class="input-group-append"> 
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
+                    </div> 
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+    
+</div>
+
+<div class="lista_hosts_comparar" style="text-decoration: none;">
+    <table class="table table-bordered table-dark" style="text-decoration:none;">
+        <thead>
+          <tr>
+            <th scope="col">COMANDO</th>
+         
+          </tr>
+        </thead>
+        <tbody>
+         
+              
+            <tr style="text-decoration: none; color: aliceblue;">                      
+                <td style="text-decoration:none; color: aliceblue;"><a class="dropdown-item" href="{% url 'comparar_hosts_lista_arp' host_id=host.id %}">Show Arp</a></td>
+            </tr>
+            <tr style="text-decoration: none;">                      
+                <td style="text-decoration:none;"><a class="dropdown-item" href="{% url 'comparar_hosts_lista_cdp' host_id=host.id %}">Show cdp nei det</a></td>
+            </tr>
+            <tr style="text-decoration: none;">                      
+                <td style="text-decoration:none;"><a class="dropdown-item" href="{% url 'comparar_hosts_lista_inter_tran' host_id=host.id %}">Show inter tran</a></td>
+            </tr>
+            <tr style="text-decoration: none;">                      
+                <td style="text-decoration:none;"><a class="dropdown-item" href="{% url 'comparar_hosts_lista_ip_os' host_id=host.id %}">Show ip os nei</a></td>
+            </tr>
+            <tr style="text-decoration: none;">                      
+                <td style="text-decoration:none;"><a class="dropdown-item" href="{% url 'comparar_hosts_lista_int_status' host_id=host.id %}">Show int status</a></td>
+            </tr>
+            <tr style="text-decoration: none;">                      
+                <td style="text-decoration:none;"><a class="dropdown-item" href="{% url 'comparar_hosts_lista_inst_des' host_id=host.id %}">Show int des</a></td>
+            </tr>
+            <tr style="text-decoration: none;">                      
+                <td style="text-decoration:none;"><a class="dropdown-item" href="{% url 'comparar_hosts_lista_bgp' host_id=host.id %}">Show bgp su</a></td>
+            </tr>
+            <tr style="text-decoration: none;">                      
+                <td style="text-decoration:none;"><a class="dropdown-item" href="{% url 'comparar_hosts_lista_run' host_id=host.id %}">Show Runing</a></td>
+            </tr>
+            <tr style="text-decoration: none;">                      
+                <td style="text-decoration:none;"><a class="dropdown-item" href="{% url 'comparar_hosts_lista_log' host_id=host.id %}">Show log</a></td>
+            </tr>
+            <tr style="text-decoration: none;">                      
+                <td style="text-decoration:none; "><a class="dropdown-item" href="{% url 'comparar_hosts_lista_mac' host_id=host.id %}">Show mac address-table</a></td>
+            </tr>
+              
+           
+        </tbody>
+      </table>
+      <table> 
+    </table>
+</div>
+
+<div class="lista_hosts_comparar2" style="text-decoration: none;">
+    
+</div>
+
+
+{% endblock %}
+
+{% block 'body' %}
+
+
+{% endblock %}

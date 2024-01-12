@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'hosts/css/hosts.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+{% endblock %}
+
+{% block 'dashboard' %}
+<!-- <div class="filtros">
+    <div class="inner-div" style="position: relative; z-index: 100;">
+        
+    </div>
+    <div class="inner-div" >
+        <p>{{host.host}}</p>
+        <button><a href="{% url 'show_tabela_arp' host_id=host.id %}">Visualizar Tabela ARP</a>
+        <button><a href="{% url 'show_bgp_view' host_id=host.id %}">Visualizar Tabela BGP</a>
+       
+        </button>
+        
+
+    </div>
+</div> -->
+
+<div class="filtros">
+    <div class="inner-div" style="position: relative; z-index: 100;">
+        <form action="{% url 'hosts' %}" method="GET" class="input-group">
+            <div class="dropdown" style="position: relative; z-index: 101;">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Comandos
+                </button>
+                
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'show_tabela_arp' host_id=host.id %}">Show Arp</a></li>
+                    <li><a class="dropdown-item" href="{% url 'show_cdp_view' host_id=host.id  %}">Show cdp nei det</a></li>
+                    <li><a class="dropdown-item" href="{% url 'show_int_tran_view' host_id=host.id %}">Show inter tran</a></li>
+                    
+                    <li><a class="dropdown-item" href="{% url 'show_ip_os_nei_view' host_id=host.id %}">Show ip os nei</a></li>
+                    <li><a class="dropdown-item" href="{% url 'show_int_status_view' host_id=host.id %}">Show int status</a></li>
+                    <li><a class="dropdown-item" href="{% url 'show_mac_view' host_id=host.id %}">Show mac address-table</a></li>
+
+                    <li><a class="dropdown-item" href="{% url 'show_int_des_view' host_id=host.id %}">Show int des</a></li>
+                    <li><a class="dropdown-item" href="{% url 'show_bgp_view' host_id=host.id %}">Show bgp su</a></li>
+                    <li><a class="dropdown-item" href="{% url 'show_running_view' host_id=host.id %}">Show Runing</a></li>
+                    <li><a class="dropdown-item" href="{% url 'show_log_view' host_id=host.id %}">Show log</a></li>
+                </ul>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="lista_hosts" style=" z-index: 100;">
+
+    <pre style="color: aliceblue;">
+        {% for result in arp_table %}
+            {{ result.id }}
+        {% endfor %}
+    </pre>
+    {{ host.ip }} -- {{ host.host }}
+
+
+
+</div>
+{% endblock %}
+
+{% block 'body' %}
+<!-- Se houver algum conteúdo para a seção de corpo -->
+{% endblock %}

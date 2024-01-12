@@ -17,31 +17,43 @@
                 
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{% url 'show_arp_view' pk=object.id %}">Show Arp</a></li>
-                    <li><a class="dropdown-item" href="#">Show cdp nei det</a></li>
-                    <li><a class="dropdown-item" href="#">Show inter tran</a></li>
+                    <li><a class="dropdown-item" href="{% url 'show_cdp_view' pk=object.id %}">Show cdp nei det</a></li>
+                    <li><a class="dropdown-item" href="{% url 'show_int_tran_view' pk=object.id %}">Show inter tran</a></li>
                     
-                    <li><a class="dropdown-item" href="#">Show ip os nei</a></li>
-                    <li><a class="dropdown-item" href="#">Show int status</a></li>
-                    <li><a class="dropdown-item" href="#">Show mac address-table</a></li>
+                    <li><a class="dropdown-item" href="{% url 'show_ip_os_nei_view' pk=object.id %}">Show ip os nei</a></li>
+                    <li><a class="dropdown-item" href="{% url 'show_int_status_view' pk=object.id %}">Show int status</a></li>
+                    <li><a class="dropdown-item" href="{% url 'show_mac_view' pk=object.id %}">Show mac address-table</a></li>
 
-                    <li><a class="dropdown-item" href="#">Show int des</a></li>
-                    <li><a class="dropdown-item" href="#">Show bgp su</a></li>
-                    <li><a class="dropdown-item" href="#">Show Runing</a></li>
-                    <li><a class="dropdown-item" href="#">Show log</a></li>
+                    <li><a class="dropdown-item" href="{% url 'show_int_des_view' pk=object.id %}">Show int des</a></li>
+                    <li><a class="dropdown-item" href="{% url 'show_bgp_view' pk=object.id %}">Show bgp su</a></li>
+                    <li><a class="dropdown-item" href="{% url 'show_running_view' pk=object.id %}">Show Runing</a></li>
+                    <li><a class="dropdown-item" href="{% url 'show_log_view' pk=object.id %}">Show log</a></li>
                 </ul>
             </div>
         </form>
     </div>
     <div class="inner-div" >
         <p>{{object.host}}</p>
+
+        <form method="get" action="">
+            <input type="date" name="" id="">
+            <button type="submit">Filtrar por Data</button>
+        </form>
     </div>
 </div>
+
+
+
+
+
 
 <div class="lista_hosts" style=" z-index: 100;">
 
     <pre style="color: aliceblue;">
-        {{ object.arp|safe }}
+        {{ object.id }}
     </pre>
+
+
 
 </div>
 {% endblock %}

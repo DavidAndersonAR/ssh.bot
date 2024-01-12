@@ -109,12 +109,13 @@
                     <tr style="text-decoration: none;">                      
                         <td>{{host.id}}</td>
                         
-                        <td style="text-decoration:none;"><a href="{% url 'host_options_view' pk=host.pk %}" style="text-decoration: none; color: aliceblue;">{{host.host}}</a></td>
+                        <td style="text-decoration:none;"><a href="{% url 'host_detail' pk=host.pk %}" style="text-decoration: none; color: aliceblue;">{{host.host}}</a></td>
                         <td>{{host.ip}}</td>
                         <td>{{host.modelo}}</td>
                         <td>{{host.empresa.empresa}}</td>
                         <td>{{host.localidade.localidade}}</td>
                         <td><a href="{% url 'update_view' pk=host.id %}"><button type="button" class="btn btn-info">Editar</button></a>
+                        <td><a href="{% url 'update_view' pk=host.id %}"><button type="button" class="btn btn-danger">Excluir</button></a>
                             
                         </td>
                     </tr>

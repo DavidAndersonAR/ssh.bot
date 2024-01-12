@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'hosts/css/hosts.css' %}">
+{% endblock %}
+
+{% block 'dashboard' %}
+<div class="container">
+    <div class="row">
+
+    </div>
+</div>
+
+<div class="filtros">
+    <div class="">
+
+        <div class="inner-div">
+            <form action="{% url 'hosts' %}" method="GET" class="input-group">
+
+                <div class="input-group mb-3" >
+                    <input type="text" class="form-control" placeholder="Hosts" aria-label="Recipient's username" aria-describedby="button-addon2" name="search">
+                    <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="inner-div">
+            <form action="{% url 'hosts' %}" method="GET" class="input-group">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Localidade" aria-label="Recipient's username" aria-describedby="button-addon2" name="localidade">
+                     <div class="input-group-append"> 
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
+                    </div> 
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+    
+</div>
+
+<div class="lista_hosts_comparar" style="text-decoration: none;">
+    <table class="table table-bordered table-dark" style="text-decoration:none;">
+        <thead>
+          <tr>
+            <th scope="col">HOST</th>
+            <th scope="col">IP</th>
+            <th scope="col">LOCAL</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% if hosts %}
+                {% for host in hosts %}
+                    <tr style="text-decoration: none;">                      
+                        <td style="text-decoration:none;"><a href="{% url 'comparar_hosts_lista' pk=host.pk %}" style="text-decoration: none; color: aliceblue;">{{host.host}}</a></td>
+                        <td>{{host.ip}}</td> 
+                        <td>{{host.localidade.localidade}}</td>     
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+      </table>
+      <table> 
+    </table>
+</div>
+
+<div class="lista_hosts_comparar2" style="text-decoration: none;">
+    <table class="table table-bordered table-dark" style="text-decoration:none;">
+        <thead>
+          <tr>
+            <th scope="col">HOST</th>
+            <th scope="col">IP</th>
+            <th scope="col">LOCAL</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% if hosts %}
+                {% for host in hosts %}
+                    <tr style="text-decoration: none;">                      
+                        <td style="text-decoration:none;"><a href="{% url 'host_detail' pk=host.pk %}" style="text-decoration: none; color: aliceblue;">{{host.host}}</a></td>
+                        <td>{{host.ip}}</td> 
+                        <td>{{host.localidade.localidade}}</td>     
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+      </table>
+      <table> 
+    </table>
+</div>
+
+
+{% endblock %}
+
+{% block 'body' %}
+
+
+{% endblock %}
